@@ -7,6 +7,10 @@ public class State {
         this.designation = designation;
     }
 
+    public String getDesignation() {
+        return designation;
+    }
+
     @Override
     public String toString() {
         return "State ( " + designation + " )";

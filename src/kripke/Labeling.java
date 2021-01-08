@@ -1,12 +1,19 @@
 package kripke;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Labeling {
-    private HashMap<State, HashSet<Proposition>> hashMap;
+    private Map<State, Set<Proposition>> interpretations;
 
-    public Labeling(HashMap<State, HashSet<Proposition>> hashMap) {
-        this.hashMap = hashMap;
+    public Labeling(Map<State, Set<Proposition>> interpretations) {
+        this.interpretations = interpretations;
+    }
+
+    @Override
+    public String toString() {
+        return "Labeling{" +
+                "interpretations=" + interpretations +
+                '}';
     }
 }

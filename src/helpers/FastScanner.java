@@ -13,6 +13,11 @@ public class FastScanner {
         out = new BufferedWriter(new OutputStreamWriter(System.out));
     }
 
+    public FastScanner (String in) throws IOException {
+        this.in = new BufferedReader(new FileReader(in));
+        this.out = new BufferedWriter(new OutputStreamWriter(System.out));
+    }
+
     public FastScanner (String in, String out) throws IOException {
         this.in = new BufferedReader(new FileReader(in));
         this.out = new BufferedWriter(new FileWriter(out));
@@ -27,6 +32,18 @@ public class FastScanner {
             st = new StringTokenizer(in.readLine());
         }
         return st.nextToken();
+    }
+
+    public int nextInt () throws IOException {
+        return Integer.parseInt(nextString());
+    }
+
+    public long nextLong () throws IOException {
+        return Long.parseLong(nextString());
+    }
+
+    public double nextDouble () throws IOException {
+        return Double.parseDouble(nextString());
     }
 
     public void println (String string) throws IOException {
