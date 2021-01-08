@@ -3,7 +3,7 @@ package app;
 import antlr.CTLLexer;
 import antlr.CTLParser;
 import formula.Formula;
-import helpers.AntlrToFormula;
+import visitors.AntlrToFormula;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;

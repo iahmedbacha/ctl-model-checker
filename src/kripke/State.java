@@ -1,14 +1,14 @@
-package formula;
+package kripke;
 
-public class Proposition extends Formula {
+public class State {
     private String designation;
 
-    public Proposition(String designation) {
+    public State(String designation) {
         this.designation = designation;
     }
 
     @Override
     public String toString() {
-        return designation;
+        return "State ( " + designation + " )";
     }
 }

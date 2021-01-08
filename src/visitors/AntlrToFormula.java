@@ -1,4 +1,4 @@
-package helpers;
+package visitors;
 
 import antlr.CTLBaseVisitor;
 import antlr.CTLParser;
@@ -46,7 +46,7 @@ public class AntlrToFormula extends CTLBaseVisitor<Formula> {
 
     @Override
     public Formula visitProposition(CTLParser.PropositionContext ctx) {
-        String label = ctx.getChild(0).getText();
-        return new Proposition(label);
+        String designation = ctx.getChild(0).getText();
+        return new Proposition(designation);
     }
 }

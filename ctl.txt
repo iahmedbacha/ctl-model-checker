@@ -1,0 +1,1 @@
+!(ETU(!(ETU(idle1&idle2))))
