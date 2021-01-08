@@ -1,4 +1,4 @@
-package formula;
+package formula.model;
 
 public class EX extends Formula {
     private Formula formula;

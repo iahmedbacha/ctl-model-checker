@@ -1,4 +1,4 @@
-package kripke;
+package kripke.model;
 
 public class State {
     private String designation;

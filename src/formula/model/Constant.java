@@ -1,4 +1,4 @@
-package formula;
+package formula.model;
 
 public class Constant extends Formula {
     private boolean constant;

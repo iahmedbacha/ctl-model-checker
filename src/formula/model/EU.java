@@ -1,4 +1,4 @@
-package formula;
+package formula.model;
 
 public class EU extends Formula {
     private Formula left;

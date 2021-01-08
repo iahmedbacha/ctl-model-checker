@@ -1,8 +1,8 @@
-package visitors;
+package formula.visitors;
 
 import antlr.CTLBaseVisitor;
 import antlr.CTLParser;
-import formula.*;
+import formula.model.*;
 
 public class FormulaVisitor extends CTLBaseVisitor<Formula> {
     @Override

@@ -1,6 +1,6 @@
-package kripke;
+package formula.model;
 
-public class Proposition {
+public class Proposition extends Formula {
     private String designation;
 
     public Proposition(String designation) {
@@ -9,6 +9,6 @@ public class Proposition {
 
     @Override
     public String toString() {
-        return "Proposition ( " + designation + " )";
+        return designation;
     }
 }

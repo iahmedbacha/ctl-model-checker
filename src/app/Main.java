@@ -1,9 +1,9 @@
 package app;
 
-import factories.FormulaSimpleFactory;
-import factories.KripkeSimpleFactory;
-import formula.Formula;
-import kripke.Kripke;
+import formula.factories.FormulaSimpleFactory;
+import kripke.factories.KripkeSimpleFactory;
+import formula.model.Formula;
+import kripke.model.Kripke;
 
 public class Main {
 

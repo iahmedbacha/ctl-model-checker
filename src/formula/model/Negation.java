@@ -1,4 +1,4 @@
-package formula;
+package formula.model;
 
 public class Negation extends Formula {
     private Formula formula;
