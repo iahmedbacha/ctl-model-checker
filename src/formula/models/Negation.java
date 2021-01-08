@@ -1,4 +1,6 @@
-package formula.model;
+package formula.models;
+
+import formula.visitors.FormulaVisitor;
 
 public class Negation extends Formula {
     private Formula formula;
@@ -10,5 +12,10 @@ public class Negation extends Formula {
     @Override
     public String toString() {
         return "! ( " + formula.toString() + " )";
+    }
+
+    @Override
+    void accept(FormulaVisitor formulaVisitor) {
+        formulaVisitor.visitNegation(this);
     }
 }

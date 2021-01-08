@@ -1,4 +1,6 @@
-package formula.model;
+package formula.models;
+
+import formula.visitors.FormulaVisitor;
 
 public class Constant extends Formula {
     private boolean constant;
@@ -10,5 +12,10 @@ public class Constant extends Formula {
     @Override
     public String toString() {
         return constant ? "true" : "false";
+    }
+
+    @Override
+    void accept(FormulaVisitor formulaVisitor) {
+        formulaVisitor.visitConstant(this);
     }
 }

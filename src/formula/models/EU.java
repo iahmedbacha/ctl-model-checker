@@ -1,4 +1,6 @@
-package formula.model;
+package formula.models;
+
+import formula.visitors.FormulaVisitor;
 
 public class EU extends Formula {
     private Formula left;
@@ -12,5 +14,10 @@ public class EU extends Formula {
     @Override
     public String toString() {
         return "E " + left.toString() + " U ( " + right.toString() + " )";
+    }
+
+    @Override
+    void accept(FormulaVisitor formulaVisitor) {
+        formulaVisitor.visitEU(this);
     }
 }

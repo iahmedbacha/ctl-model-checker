@@ -1,4 +1,4 @@
-package kripke.model;
+package kripke.models;
 
 public class Proposition {
     private String designation;

@@ -1,10 +1,10 @@
 package kripke.factories;
 
 import helpers.FastScanner;
-import kripke.model.Kripke;
-import kripke.model.Labeling;
-import kripke.model.Proposition;
-import kripke.model.State;
+import kripke.models.Kripke;
+import kripke.models.Labeling;
+import kripke.models.Proposition;
+import kripke.models.State;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,4 +1,6 @@
-package formula.model;
+package formula.models;
+
+import formula.visitors.FormulaVisitor;
 
 public class And extends Formula {
     private Formula left;
@@ -12,5 +14,10 @@ public class And extends Formula {
     @Override
     public String toString() {
         return left.toString() + " & " + right.toString();
+    }
+
+    @Override
+    void accept(FormulaVisitor formulaVisitor) {
+        formulaVisitor.visitAnd(this);
     }
 }

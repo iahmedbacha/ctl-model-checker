@@ -2,8 +2,8 @@ package app;
 
 import formula.factories.FormulaSimpleFactory;
 import kripke.factories.KripkeSimpleFactory;
-import formula.model.Formula;
-import kripke.model.Kripke;
+import formula.models.Formula;
+import kripke.models.Kripke;
 
 public class Main {
 

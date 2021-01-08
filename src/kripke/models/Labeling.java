@@ -1,4 +1,4 @@
-package kripke.model;
+package kripke.models;
 
 import java.util.Map;
 import java.util.Set;
