@@ -4,7 +4,7 @@ import antlr.CTLBaseVisitor;
 import antlr.CTLParser;
 import formula.*;
 
-public class AntlrToFormula extends CTLBaseVisitor<Formula> {
+public class FormulaVisitor extends CTLBaseVisitor<Formula> {
     @Override
     public Formula visitEU(CTLParser.EUContext ctx) {
         Formula left = visit(ctx.getChild(1));
