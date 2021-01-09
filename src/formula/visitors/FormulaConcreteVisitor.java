@@ -42,7 +42,13 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitAnd(And and) {
-
+        Formula left = and.getLeft();
+        Formula right = and.getRight();
+        left.accept(this);
+        right.accept(this);
+        for (State state : kripke.getStates().values()) {
+            putEvaluation(state, and, evaluations.get(state).get(left) && evaluations.get(state).get(right));
+        }
     }
 
     @Override
