@@ -3,11 +3,11 @@ package formula.factories;
 import antlr.CTLLexer;
 import antlr.CTLParser;
 import formula.models.Formula;
+import formula.visitors.CTLConcreteVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import formula.visitors.CTLConcreteVisitor;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,jetbrains
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,jetbrains
+# Created by https://www.toptal.com/developers/gitignore/api/java,jetbrains,gradle
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,jetbrains,gradle
 
 ### Java ###
 # Compiled class file
@@ -130,4 +130,26 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-# End of https://www.toptal.com/developers/gitignore/api/java,jetbrains
+### Gradle ###
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# ANTLR
+app/src/main/java/antlr/
+
+# End of https://www.toptal.com/developers/gitignore/api/java,jetbrains,gradle

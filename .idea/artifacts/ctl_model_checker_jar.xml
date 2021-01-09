@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="ctl-model-checker:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ctl_model_checker_jar</output-path>
-    <root id="archive" name="ctl-model-checker.jar">
-      <element id="module-output" name="ctl-model-checker" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/antlr-4.9.1-complete.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

@@ -9,7 +9,7 @@ import kripke.models.State;
 
 import java.util.Map;
 
-public class Main {
+public class App {
 
     public static void main(String[] args) {
         if (args.length != 2) {

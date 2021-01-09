@@ -4,7 +4,7 @@ formula: PROPOSITION # Proposition
        | CONSTANT # Constant
        | '!' '(' formula ')' # Negation
        | formula '&' formula # And
-       | 'EX' '(' formula ')' # EX
+       | 'E' 'X' '(' formula ')' # EX
        | 'E' formula 'U' '(' formula ')' # EU
        | 'A' formula 'U' '(' formula ')' # AU
        ;
