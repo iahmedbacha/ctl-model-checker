@@ -23,7 +23,7 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         return evaluations;
     }
 
-    void putEvaluation (State state, Formula formula, boolean bool) {
+    void setEvaluation(State state, Formula formula, boolean bool) {
         if (evaluations.containsKey(state)) {
             evaluations.get(state).put(formula, bool);
         }
@@ -32,6 +32,13 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
             formulas.put(formula, bool);
             evaluations.put(state, formulas);
         }
+    }
+
+    Boolean getEvaluation (State state, Formula formula) {
+        if (evaluations.containsKey(state)) {
+            return evaluations.get(state).getOrDefault(formula, false);
+        }
+        return false;
     }
 
     boolean isEvaluated (Formula formula) {
@@ -49,14 +56,46 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
             left.accept(this);
             right.accept(this);
             for (State state : kripke.getStates().values()) {
-                putEvaluation(state, and, evaluations.get(state).get(left) && evaluations.get(state).get(right));
+                setEvaluation(state, and, getEvaluation(state, left) && getEvaluation(state, right));
             }
         }
     }
 
     @Override
     public void visitAU(AU au) {
-
+        if (!isEvaluated(au)) {
+            Formula left = au.getLeft();
+            Formula right = au.getRight();
+            left.accept(this);
+            right.accept(this);
+            Set<State> L = new HashSet<>();
+            Map<State, Integer> nb = new HashMap<>();
+            Map<State, Set<State>> transitions = kripke.getTransitions();
+            for (State state : kripke.getStates().values()) {
+                nb.put(state, transitions.get(state).size());
+                setEvaluation(state, au, false);
+                if (getEvaluation(state, right)) {
+                    L.add(state);
+                }
+            }
+            while (L.size() > 0) {
+                for (State state : L) {
+                    setEvaluation(state, au, true);
+                    for (State source : transitions.keySet()) {
+                        for (State destination : transitions.get(source)) {
+                            if (destination == state) {
+                                nb.put(source, nb.get(source) - 1);
+                                if (nb.get(source) == 0 && getEvaluation(source, left) && !getEvaluation(source, au)) {
+                                    L.add(source);
+                                }
+                            }
+                        }
+                    }
+                    L.remove(state);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -67,25 +106,23 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
             left.accept(this);
             right.accept(this);
             Map<State, Boolean> seenBefore = new HashMap<>();
-            for (State state : kripke.getStates().values()) {
-                putEvaluation(state, eu, false);
-                seenBefore.put(state, false);
-            }
             Set<State> L = new HashSet<>();
             for (State state : kripke.getStates().values()) {
-                if (evaluations.get(state).get(right)) {
+                setEvaluation(state, eu, false);
+                seenBefore.put(state, false);
+                if (getEvaluation(state, right)) {
                     L.add(state);
                 }
             }
             while (L.size() > 0) {
                 for (State state : L) {
-                    putEvaluation(state, eu, true);
+                    setEvaluation(state, eu, true);
                     Map<State, Set<State>> transitions = kripke.getTransitions();
                     for (State source : transitions.keySet()) {
                         for (State destination : transitions.get(source)) {
                             if (destination == state && !seenBefore.get(source)) {
                                 seenBefore.put(source, true);
-                                if (evaluations.get(source).get(left)) {
+                                if (getEvaluation(source, left)) {
                                     L.add(source);
                                 }
                             }
@@ -104,14 +141,14 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
             Formula formula = ex.getFormula();
             formula.accept(this);
             for (State state : kripke.getStates().values()) {
-                putEvaluation(state, ex, false);
+                setEvaluation(state, ex, false);
             }
             Map<State, Set<State>> transitions = kripke.getTransitions();
             for (State source : transitions.keySet()) {
-                putEvaluation(source, ex, false);
+                setEvaluation(source, ex, false);
                 for (State destination : transitions.get(source)) {
-                    if (evaluations.get(destination).get(formula)) {
-                        putEvaluation(source, ex, true);
+                    if (getEvaluation(destination, formula)) {
+                        setEvaluation(source, ex, true);
                         break;
                     }
                 }
@@ -125,7 +162,7 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
             Formula formula = negation.getFormula();
             formula.accept(this);
             for (State state : kripke.getStates().values()) {
-                putEvaluation(state, negation, !evaluations.get(state).get(formula));
+                setEvaluation(state, negation, !getEvaluation(state, formula));
             }
         }
     }
@@ -135,7 +172,7 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         if (!isEvaluated(proposition)) {
             for (State state : kripke.getStates().values()) {
                 Labeling labeling = kripke.getLabeling();
-                putEvaluation(state, proposition, labeling.isProposition(state, proposition.getDesignation()));
+                setEvaluation(state, proposition, labeling.isProposition(state, proposition.getDesignation()));
             }
         }
     }
@@ -144,7 +181,7 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
     public void visitConstant(Constant constant) {
         if (!isEvaluated(constant)) {
             for (State state : kripke.getStates().values()) {
-                putEvaluation(state, constant, constant.isConstant());
+                setEvaluation(state, constant, constant.isConstant());
             }
         }
     }

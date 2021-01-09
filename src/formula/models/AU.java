@@ -11,6 +11,14 @@ public class AU extends Formula {
         this.right = right;
     }
 
+    public Formula getLeft() {
+        return left;
+    }
+
+    public Formula getRight() {
+        return right;
+    }
+
     @Override
     public String toString() {
         return "A " + left.toString() + " U ( " + right.toString() + " )";
