@@ -6,6 +6,7 @@ import kripke.models.Labeling;
 import kripke.models.State;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,12 +43,14 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitAnd(And and) {
-        Formula left = and.getLeft();
-        Formula right = and.getRight();
-        left.accept(this);
-        right.accept(this);
-        for (State state : kripke.getStates().values()) {
-            putEvaluation(state, and, evaluations.get(state).get(left) && evaluations.get(state).get(right));
+        if (!isEvaluated(and)) {
+            Formula left = and.getLeft();
+            Formula right = and.getRight();
+            left.accept(this);
+            right.accept(this);
+            for (State state : kripke.getStates().values()) {
+                putEvaluation(state, and, evaluations.get(state).get(left) && evaluations.get(state).get(right));
+            }
         }
     }
 
@@ -58,7 +61,41 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitEU(EU eu) {
-
+        if (!isEvaluated(eu)) {
+            Formula left = eu.getLeft();
+            Formula right = eu.getRight();
+            left.accept(this);
+            right.accept(this);
+            Map<State, Boolean> seenBefore = new HashMap<>();
+            for (State state : kripke.getStates().values()) {
+                putEvaluation(state, eu, false);
+                seenBefore.put(state, false);
+            }
+            Set<State> L = new HashSet<>();
+            for (State state : kripke.getStates().values()) {
+                if (evaluations.get(state).get(right)) {
+                    L.add(state);
+                }
+            }
+            while (L.size() > 0) {
+                for (State state : L) {
+                    putEvaluation(state, eu, true);
+                    Map<State, Set<State>> transitions = kripke.getTransitions();
+                    for (State source : transitions.keySet()) {
+                        for (State destination : transitions.get(source)) {
+                            if (destination == state && !seenBefore.get(source)) {
+                                seenBefore.put(source, true);
+                                if (evaluations.get(source).get(left)) {
+                                    L.add(source);
+                                }
+                            }
+                        }
+                    }
+                    L.remove(state);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
