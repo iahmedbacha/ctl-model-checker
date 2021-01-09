@@ -20,6 +20,10 @@ public class Kripke {
         return states;
     }
 
+    public Map<State, Set<State>> getTransitions() {
+        return transitions;
+    }
+
     public Labeling getLabeling() {
         return labeling;
     }

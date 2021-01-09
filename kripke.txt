@@ -1,10 +1,28 @@
-3
-S0 S1 S2
+8
+S0 S1 S2 S3 S4 S5 S6 S7
 1
 S0
-2
+14
 S0 S1
-S1 S2
-2
-S0 2 p1 p2
-S1 1 p2
+S0 S2
+S1 S3
+S1 S4
+S2 S3
+S2 S5
+S3 S6
+S3 S7
+S4 S0
+S4 S6
+S5 S0
+S5 S7
+S6 S2
+S7 S1
+8
+S0 2 end1 end2
+S1 2 req1 end2
+S2 2 req2 end1
+S3 2 req2 req1
+S4 1 cs1
+S5 1 cs2
+S6 2 cs1 req2
+S7 2 cs2 req1

@@ -24,10 +24,8 @@ public class Main {
             formula.accept(formulaConcreteVisitor);
             Map<State, Map<Formula, Boolean>> evaluations = formulaConcreteVisitor.getEvaluations();
             for (State state : evaluations.keySet()) {
-                if (evaluations.get(state).containsKey(formula)) {
-                    if (evaluations.get(state).get(formula)) {
-                        System.out.println(state);
-                    }
+                if (evaluations.get(state).get(formula)) {
+                    System.out.println(state);
                 }
             }
         }

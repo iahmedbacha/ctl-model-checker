@@ -7,6 +7,7 @@ import kripke.models.State;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class FormulaConcreteVisitor extends FormulaVisitor {
     final private Kripke kripke;
@@ -56,7 +57,23 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitEX(EX ex) {
-
+        if (!isEvaluated(ex)) {
+            Formula formula = ex.getFormula();
+            formula.accept(this);
+            for (State state : kripke.getStates().values()) {
+                putEvaluation(state, ex, false);
+            }
+            Map<State, Set<State>> transitions = kripke.getTransitions();
+            for (State source : transitions.keySet()) {
+                putEvaluation(source, ex, false);
+                for (State destination : transitions.get(source)) {
+                    if (evaluations.get(destination).get(formula)) {
+                        putEvaluation(source, ex, true);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override
