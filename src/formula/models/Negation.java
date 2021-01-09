@@ -9,6 +9,10 @@ public class Negation extends Formula {
         this.formula = formula;
     }
 
+    public Formula getFormula() {
+        return formula;
+    }
+
     @Override
     public String toString() {
         return "! ( " + formula.toString() + " )";

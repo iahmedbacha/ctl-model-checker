@@ -62,7 +62,21 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitNegation(Negation negation) {
-
+        Formula formula = negation.getFormula();
+        formula.accept(this);
+        for (State state : kripke.getStates().values()) {
+            if (evaluations.containsKey(state)) {
+                if (evaluations.get(state).contains(formula)) {
+                    removeEvaluation(state, formula);
+                }
+                else {
+                    addEvaluation(state, negation);
+                }
+            }
+            else {
+                addEvaluation(state, negation);
+            }
+        }
     }
 
     @Override
