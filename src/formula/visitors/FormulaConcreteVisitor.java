@@ -6,38 +6,37 @@ import kripke.models.Labeling;
 import kripke.models.State;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class FormulaConcreteVisitor extends FormulaVisitor {
-    private Kripke kripke;
-    private Map<State, Set<Formula>> evaluations;
+    final private Kripke kripke;
+    final private Map<State, Map<Formula, Boolean>> evaluations;
 
     public FormulaConcreteVisitor(Kripke kripke) {
         this.kripke = kripke;
         this.evaluations = new HashMap<>();
     }
 
-    public Map<State, Set<Formula>> getEvaluations() {
+    public Map<State, Map<Formula, Boolean>> getEvaluations() {
         return evaluations;
     }
 
-    void addEvaluation (State state, Formula formula) {
+    void putEvaluation (State state, Formula formula, boolean bool) {
         if (evaluations.containsKey(state)) {
-            evaluations.get(state).add(formula);
+            evaluations.get(state).put(formula, bool);
         }
         else {
-            Set<Formula> formulas = new HashSet<>();
-            formulas.add(formula);
+            Map<Formula, Boolean> formulas = new HashMap<>();
+            formulas.put(formula, bool);
             evaluations.put(state, formulas);
         }
     }
 
-    void removeEvaluation (State state, Formula formula) {
-        if (evaluations.containsKey(state)) {
-            evaluations.get(state).remove(formula);
+    boolean isEvaluated (Formula formula) {
+        for (State state : evaluations.keySet()) {
+            return evaluations.get(state).containsKey(formula);
         }
+        return false;
     }
 
     @Override
@@ -62,40 +61,31 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
 
     @Override
     public void visitNegation(Negation negation) {
-        Formula formula = negation.getFormula();
-        formula.accept(this);
-        for (State state : kripke.getStates().values()) {
-            if (evaluations.containsKey(state)) {
-                if (evaluations.get(state).contains(formula)) {
-                    removeEvaluation(state, formula);
-                }
-                else {
-                    addEvaluation(state, negation);
-                }
-            }
-            else {
-                addEvaluation(state, negation);
+        if (!isEvaluated(negation)) {
+            Formula formula = negation.getFormula();
+            formula.accept(this);
+            for (State state : kripke.getStates().values()) {
+                putEvaluation(state, negation, !evaluations.get(state).get(formula));
             }
         }
     }
 
     @Override
     public void visitProposition(Proposition proposition) {
-        for (State state : kripke.getStates().values()) {
-            Labeling labeling = kripke.getLabeling();
-            if (labeling.isProposition(state, proposition.getDesignation())) {
-                addEvaluation(state, proposition);
-            }
-            else {
-                removeEvaluation(state, proposition);
+        if (!isEvaluated(proposition)) {
+            for (State state : kripke.getStates().values()) {
+                Labeling labeling = kripke.getLabeling();
+                putEvaluation(state, proposition, labeling.isProposition(state, proposition.getDesignation()));
             }
         }
     }
 
     @Override
     public void visitConstant(Constant constant) {
-        for (State state : kripke.getStates().values()) {
-            addEvaluation(state, constant);
+        if (!isEvaluated(constant)) {
+            for (State state : kripke.getStates().values()) {
+                putEvaluation(state, constant, constant.isConstant());
+            }
         }
     }
 }
