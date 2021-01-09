@@ -32,7 +32,7 @@ public class KripkeSimpleFactory {
                 initialStates.add(state);
             }
             int x = fastScanner.nextInt();
-            Map<State, Set<State>> transitions = new HashMap(x);
+            Map<State, Set<State>> transitions = new HashMap<>(x);
             for (int i = 0; i < x; i++) {
                 String designationSource = fastScanner.nextString();
                 String designationDestination = fastScanner.nextString();
@@ -48,16 +48,16 @@ public class KripkeSimpleFactory {
                 }
             }
             int y = fastScanner.nextInt();
-            Map<State, Set<Proposition>> interpretations = new HashMap<>(y);
+            Map<State, Map<String, Proposition>> interpretations = new HashMap<>(y);
             for (int i = 0; i < y; i++) {
                 String designation = fastScanner.nextString();
                 State state = states.get(designation);
                 int z = fastScanner.nextInt();
-                Set<Proposition> propositions = new HashSet<>(z);
+                Map<String, Proposition> propositions = new HashMap<>(z);
                 for (int j = 0; j < z; j++) {
                     String designationProposition = fastScanner.nextString();
                     Proposition proposition = new Proposition(designationProposition);
-                    propositions.add(proposition);
+                    propositions.put(designationProposition, proposition);
                 }
                 interpretations.put(state, propositions);
             }

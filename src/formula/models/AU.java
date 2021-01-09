@@ -17,7 +17,7 @@ public class AU extends Formula {
     }
 
     @Override
-    void accept(FormulaVisitor formulaVisitor) {
+    public void accept(FormulaVisitor formulaVisitor) {
         formulaVisitor.visitAU(this);
     }
 }

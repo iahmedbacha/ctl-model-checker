@@ -16,6 +16,14 @@ public class Kripke {
         this.labeling = labeling;
     }
 
+    public Map<String, State> getStates() {
+        return states;
+    }
+
+    public Labeling getLabeling() {
+        return labeling;
+    }
+
     @Override
     public String toString() {
         return "Kripke{" +

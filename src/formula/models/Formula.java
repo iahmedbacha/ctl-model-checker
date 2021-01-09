@@ -3,5 +3,10 @@ package formula.models;
 import formula.visitors.FormulaVisitor;
 
 public abstract class Formula {
-    abstract void accept(FormulaVisitor formulaVisitor);
+    abstract public void accept(FormulaVisitor formulaVisitor);
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
+    }
 }

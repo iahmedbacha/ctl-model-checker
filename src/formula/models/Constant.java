@@ -9,13 +9,17 @@ public class Constant extends Formula {
         this.constant = constant;
     }
 
+    public boolean isConstant() {
+        return constant;
+    }
+
     @Override
     public String toString() {
         return constant ? "true" : "false";
     }
 
     @Override
-    void accept(FormulaVisitor formulaVisitor) {
+    public void accept(FormulaVisitor formulaVisitor) {
         formulaVisitor.visitConstant(this);
     }
 }

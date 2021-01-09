@@ -15,7 +15,7 @@ public class EX extends Formula {
     }
 
     @Override
-    void accept(FormulaVisitor formulaVisitor) {
+    public void accept(FormulaVisitor formulaVisitor) {
         formulaVisitor.visitEX(this);
     }
 }

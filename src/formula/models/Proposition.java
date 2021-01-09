@@ -9,13 +9,17 @@ public class Proposition extends Formula {
         this.designation = designation;
     }
 
+    public String getDesignation() {
+        return designation;
+    }
+
     @Override
     public String toString() {
         return designation;
     }
 
     @Override
-    void accept(FormulaVisitor formulaVisitor) {
+    public void accept(FormulaVisitor formulaVisitor) {
         formulaVisitor.visitProposition(this);
     }
 }
