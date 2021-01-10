@@ -11,7 +11,16 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
 
+/**
+ * Formula simple factory: create formula object
+ */
 public class FormulaSimpleFactory {
+    /**
+     * Get formula based on fileName
+     *
+     * @param fileName fileName of formula file
+     * @return formula object
+     */
     public static Formula getFormula (String fileName) {
         CTLParser parser = getParser(fileName);
         ParseTree antlrAST = parser.formula();
@@ -20,6 +29,12 @@ public class FormulaSimpleFactory {
         return formula;
     }
 
+    /**
+     * Get parser based on fileName
+     *
+     * @param fileName fileName of ctl formula file
+     * @return parser object
+     */
     private static CTLParser getParser(String fileName) {
         CTLParser parser = null;
         try {

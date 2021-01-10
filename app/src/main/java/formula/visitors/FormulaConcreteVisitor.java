@@ -9,19 +9,46 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Formula concrete visitor evaluates a formula object
+ */
+
 public class FormulaConcreteVisitor extends FormulaVisitor {
+    /**
+     * Kripke object
+     */
     final private Kripke kripke;
+    /**
+     * Evaluations object
+     */
     final private Map<State, Map<Formula, Boolean>> evaluations;
 
+    /**
+     * Construct Formula concrete visitor.
+     *
+     * @param kripke kripke object.
+     */
     public FormulaConcreteVisitor(Kripke kripke) {
         this.kripke = kripke;
         this.evaluations = new HashMap<>();
     }
 
+    /**
+     * Get evaluations.
+     *
+     * @return evaluations.
+     */
     public Map<State, Map<Formula, Boolean>> getEvaluations() {
         return evaluations;
     }
 
+    /**
+     * Set evaluation of a formula in a state with boolean.
+     *
+     * @param state state
+     * @param formula formula
+     * @param bool boolean
+     */
     void setEvaluation(State state, Formula formula, boolean bool) {
         if (evaluations.containsKey(state)) {
             evaluations.get(state).put(formula, bool);
@@ -33,6 +60,13 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * Get evaluation.
+     *
+     * @param state state
+     * @param formula formula
+     * @return evaluation.
+     */
     Boolean getEvaluation (State state, Formula formula) {
         if (evaluations.containsKey(state)) {
             return evaluations.get(state).getOrDefault(formula, false);
@@ -40,6 +74,12 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         return false;
     }
 
+    /**
+     * Check if a formula is already evaluated.
+     *
+     * @param formula formula
+     * @return true if the formula is already evaluated, otherwise false.
+     */
     boolean isEvaluated (Formula formula) {
         for (State state : evaluations.keySet()) {
             return evaluations.get(state).containsKey(formula);
@@ -47,6 +87,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate And formula
+     */
     @Override
     public void visitAnd(And and) {
         if (!isEvaluated(and)) {
@@ -60,6 +105,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate AU formula
+     */
     @Override
     public void visitAU(AU au) {
         if (!isEvaluated(au)) {
@@ -97,6 +147,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate EU formula
+     */
     @Override
     public void visitEU(EU eu) {
         if (!isEvaluated(eu)) {
@@ -134,6 +189,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate EX formula
+     */
     @Override
     public void visitEX(EX ex) {
         if (!isEvaluated(ex)) {
@@ -155,6 +215,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate Negation formula
+     */
     @Override
     public void visitNegation(Negation negation) {
         if (!isEvaluated(negation)) {
@@ -166,6 +231,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate Negation formula
+     */
     @Override
     public void visitProposition(Proposition proposition) {
         if (!isEvaluated(proposition)) {
@@ -175,6 +245,11 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The concrete implementation evaluate Constant formula
+     */
     @Override
     public void visitConstant(Constant constant) {
         if (!isEvaluated(constant)) {

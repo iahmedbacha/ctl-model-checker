@@ -11,7 +11,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Kripke simple factory: create kripke object
+ */
 public class KripkeSimpleFactory {
+    /**
+     * Get kripke based on fileName
+     *
+     * @param fileName fileName of kripke file
+     * @return kripke object
+     */
     public static Kripke getKripke (String fileName) {
         Kripke kripke = null;
         try {
