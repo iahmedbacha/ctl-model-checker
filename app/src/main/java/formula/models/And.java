@@ -81,7 +81,7 @@ public class And extends Formula {
     }
 
     /**
-     * Calculate hashCode of And model.
+     * Override calculate hashCode of And model.
      *
      * @return hashCode
      */

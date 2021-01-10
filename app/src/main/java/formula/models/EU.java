@@ -81,7 +81,7 @@ public class EU extends Formula {
     }
 
     /**
-     * Calculate hashCode of EU model.
+     * Override calculate hashCode of EU model.
      *
      * @return hashCode
      */

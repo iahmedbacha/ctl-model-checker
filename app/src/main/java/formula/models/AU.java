@@ -81,7 +81,7 @@ public class AU extends Formula {
     }
 
     /**
-     * Calculate hashCode of AU model.
+     * Override calculate hashCode of AU model.
      *
      * @return hashCode
      */

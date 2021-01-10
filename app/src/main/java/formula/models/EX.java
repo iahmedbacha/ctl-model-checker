@@ -65,7 +65,7 @@ public class EX extends Formula {
     }
 
     /**
-     * Calculate hashCode of EX model.
+     * Override calculate hashCode of EX model.
      *
      * @return hashCode
      */

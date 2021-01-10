@@ -23,7 +23,7 @@ public abstract class Formula {
     abstract public boolean equals(Object obj);
 
     /**
-     * Calculate hashCode of Formula model.
+     * Override calculate hashCode of Formula model.
      *
      * @return hashCode
      */

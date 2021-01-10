@@ -65,7 +65,7 @@ public class Proposition extends Formula {
     }
 
     /**
-     * Calculate hashCode of Proposition model.
+     * Override calculate hashCode of Proposition model.
      *
      * @return hashCode
      */

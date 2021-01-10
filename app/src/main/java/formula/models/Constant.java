@@ -65,7 +65,7 @@ public class Constant extends Formula {
     }
 
     /**
-     * Calculate hashCode of Constant model.
+     * Override calculate hashCode of Constant model.
      *
      * @return hashCode
      */

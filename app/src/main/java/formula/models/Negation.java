@@ -65,7 +65,7 @@ public class Negation extends Formula {
     }
 
     /**
-     * Calculate hashCode of Negation model.
+     * Override calculate hashCode of Negation model.
      *
      * @return hashCode
      */
