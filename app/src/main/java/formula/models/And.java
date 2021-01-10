@@ -2,8 +2,10 @@ package formula.models;
 
 import formula.visitors.FormulaVisitor;
 
+import java.util.Objects;
+
 /**
- * And model (left & right)
+ * And model: left &amp; right
  */
 public class And extends Formula {
     /**
@@ -55,11 +57,36 @@ public class And extends Formula {
     }
 
     /**
-     * Call visitor of And model.
+     * Override call visitor of And model.
      *
      */
     @Override
     public void accept(FormulaVisitor formulaVisitor) {
         formulaVisitor.visitAnd(this);
+    }
+
+    /**
+     * Override compare with another object.
+     *
+     * @param o object to compare with
+     * @return equals boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        And and = (And) o;
+        return Objects.equals(left, and.left) &&
+                Objects.equals(right, and.right);
+    }
+
+    /**
+     * Calculate hashCode of And model.
+     *
+     * @return hashCode
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

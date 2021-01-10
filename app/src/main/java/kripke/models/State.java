@@ -23,7 +23,7 @@ public class State {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         State state = (State) o;
-        return designation.equals(state.designation);
+        return Objects.equals(designation, state.designation);
     }
 
     @Override

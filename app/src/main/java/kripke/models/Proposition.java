@@ -19,7 +19,7 @@ public class Proposition {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Proposition that = (Proposition) o;
-        return designation.equals(that.designation);
+        return Objects.equals(designation, that.designation);
     }
 
     @Override
