@@ -12,6 +12,7 @@ public class App {
      * Read user's inputs and call CTL checker
      *
      * @param args kripke, formula and output file names
+     * @throws IOException input/output exception
      */
     public static void main(String[] args) throws IOException {
         if (args.length != 3) {
