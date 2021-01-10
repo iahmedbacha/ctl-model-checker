@@ -10,6 +10,12 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
     id 'antlr'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+compileJava   {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 }
 
 repositories {
@@ -26,6 +32,7 @@ dependencies {
 
     // ANTLR dependency
     antlr "org.antlr:antlr4:4.9.1"
+    compile "org.antlr:antlr4-runtime:4.9.1"
 }
 
 generateGrammarSource {
@@ -35,5 +42,5 @@ generateGrammarSource {
 
 application {
     // Define the main class for the application.
-    mainClass = 'app.App'
+    mainClassName = 'app.App'
 }
