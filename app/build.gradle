@@ -8,6 +8,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
     id 'antlr'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
@@ -34,14 +35,6 @@ dependencies {
 generateGrammarSource {
     arguments += ['-package', 'antlr', '-visitor', '-no-listener']
     outputDirectory = file("src/main/java/antlr")
-}
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'app.App'
-        )
-    }
 }
 
 application {
