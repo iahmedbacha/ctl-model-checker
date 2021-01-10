@@ -32,12 +32,19 @@ dependencies {
 
     // ANTLR dependency
     antlr "org.antlr:antlr4:4.9.1"
-    compile "org.antlr:antlr4-runtime:4.9.1"
 }
 
 generateGrammarSource {
     arguments += ['-package', 'antlr', '-visitor', '-no-listener']
     outputDirectory = file("src/main/java/antlr")
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'app.App'
+        )
+    }
 }
 
 application {
