@@ -16,7 +16,7 @@ public class KripkeSimpleFactory {
     public static Kripke getKripke (String fileName) {
         Kripke kripke = null;
         try {
-            FastScanner fastScanner = new FastScanner(fileName);
+            FastScanner fastScanner = new FastScanner(fileName, true);
             int n = fastScanner.nextInt();
             Map<String, State> states = new HashMap<>(n);
             for (int i = 0; i < n; i++) {

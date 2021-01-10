@@ -13,9 +13,15 @@ public class FastScanner {
         out = new BufferedWriter(new OutputStreamWriter(System.out));
     }
 
-    public FastScanner (String in) throws IOException {
-        this.in = new BufferedReader(new FileReader(in));
-        this.out = new BufferedWriter(new OutputStreamWriter(System.out));
+    public FastScanner (String fileName, boolean bool) throws IOException {
+        if (bool) {
+            this.in = new BufferedReader(new FileReader(fileName));
+            this.out = new BufferedWriter(new OutputStreamWriter(System.out));
+        }
+        else {
+            in = new BufferedReader(new InputStreamReader(System.in));
+            this.out = new BufferedWriter(new FileWriter(fileName));
+        }
     }
 
     public FastScanner (String in, String out) throws IOException {

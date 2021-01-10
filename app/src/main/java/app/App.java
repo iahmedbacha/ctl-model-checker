@@ -1,33 +1,20 @@
 package app;
 
-import formula.factories.FormulaSimpleFactory;
-import formula.models.Formula;
-import formula.visitors.FormulaConcreteVisitor;
-import kripke.factories.KripkeSimpleFactory;
-import kripke.models.Kripke;
-import kripke.models.State;
+import helpers.CTLChecker;
 
-import java.util.Map;
+import java.io.IOException;
 
 public class App {
 
-    public static void main(String[] args) {
-        if (args.length != 2) {
-            System.err.println("Usage: 2 file names are required (kripke and formula)");
+    public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            System.err.println("Usage: 3 file names are required (kripke and formula and output)");
         }
         else {
             String kripkeFileName = args[0];
-            String FormulaFileName = args[1];
-            Kripke kripke = KripkeSimpleFactory.getKripke(kripkeFileName);
-            Formula formula = FormulaSimpleFactory.getFormula(FormulaFileName);
-            FormulaConcreteVisitor formulaConcreteVisitor = new FormulaConcreteVisitor(kripke);
-            formula.accept(formulaConcreteVisitor);
-            Map<State, Map<Formula, Boolean>> evaluations = formulaConcreteVisitor.getEvaluations();
-            for (State state : evaluations.keySet()) {
-                if (evaluations.get(state).get(formula)) {
-                    System.out.println(state);
-                }
-            }
+            String formulaFileName = args[1];
+            String outputFileName = args[2];
+            CTLChecker.check(kripkeFileName, formulaFileName, outputFileName);
         }
     }
 }
