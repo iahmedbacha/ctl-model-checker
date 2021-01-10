@@ -2,7 +2,6 @@ package formula.visitors;
 
 import formula.models.*;
 import kripke.models.Kripke;
-import kripke.models.Labeling;
 import kripke.models.State;
 
 import java.util.HashMap;
@@ -171,8 +170,7 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
     public void visitProposition(Proposition proposition) {
         if (!isEvaluated(proposition)) {
             for (State state : kripke.getStates().values()) {
-                Labeling labeling = kripke.getLabeling();
-                setEvaluation(state, proposition, labeling.isProposition(state, proposition.getDesignation()));
+                setEvaluation(state, proposition, kripke.isProposition(state, proposition.getDesignation()));
             }
         }
     }

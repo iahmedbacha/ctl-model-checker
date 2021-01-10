@@ -2,7 +2,6 @@ package kripke.factories;
 
 import helpers.FastScanner;
 import kripke.models.Kripke;
-import kripke.models.Labeling;
 import kripke.models.Proposition;
 import kripke.models.State;
 
@@ -48,21 +47,20 @@ public class KripkeSimpleFactory {
                 }
             }
             int y = fastScanner.nextInt();
-            Map<State, Map<String, Proposition>> interpretations = new HashMap<>(y);
+            Map<State, Set<Proposition>> interpretations = new HashMap<>(y);
             for (int i = 0; i < y; i++) {
                 String designation = fastScanner.nextString();
                 State state = states.get(designation);
                 int z = fastScanner.nextInt();
-                Map<String, Proposition> propositions = new HashMap<>(z);
+                Set<Proposition> propositions = new HashSet<>(z);
                 for (int j = 0; j < z; j++) {
                     String designationProposition = fastScanner.nextString();
                     Proposition proposition = new Proposition(designationProposition);
-                    propositions.put(designationProposition, proposition);
+                    propositions.add(proposition);
                 }
                 interpretations.put(state, propositions);
             }
-            Labeling labeling = new Labeling(interpretations);
-            kripke =  new Kripke(states, initialStates, transitions, labeling);
+            kripke =  new Kripke(states, initialStates, transitions, interpretations);
         } catch (IOException e) {
             e.printStackTrace();
         }
