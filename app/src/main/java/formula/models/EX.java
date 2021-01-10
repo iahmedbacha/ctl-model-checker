@@ -3,7 +3,7 @@ package formula.models;
 import formula.visitors.FormulaVisitor;
 
 public class EX extends Formula {
-    private Formula formula;
+    private final Formula formula;
 
     public EX(Formula formula) {
         this.formula = formula;

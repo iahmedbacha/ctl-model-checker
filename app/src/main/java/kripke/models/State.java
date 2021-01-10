@@ -3,7 +3,7 @@ package kripke.models;
 import java.util.Objects;
 
 public class State {
-    private String designation;
+    private final String designation;
 
     public State(String designation) {
         this.designation = designation;

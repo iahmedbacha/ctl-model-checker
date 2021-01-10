@@ -3,8 +3,8 @@ package formula.models;
 import formula.visitors.FormulaVisitor;
 
 public class AU extends Formula {
-    private Formula left;
-    private Formula right;
+    private final Formula left;
+    private final Formula right;
 
     public AU(Formula left, Formula right) {
         this.left = left;

@@ -3,7 +3,7 @@ package formula.models;
 import formula.visitors.FormulaVisitor;
 
 public class Negation extends Formula {
-    private Formula formula;
+    private final Formula formula;
 
     public Negation(Formula formula) {
         this.formula = formula;

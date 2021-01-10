@@ -3,7 +3,7 @@ package formula.models;
 import formula.visitors.FormulaVisitor;
 
 public class Proposition extends Formula {
-    private String designation;
+    private final String designation;
 
     public Proposition(String designation) {
         this.designation = designation;

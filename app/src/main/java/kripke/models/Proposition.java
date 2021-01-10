@@ -3,7 +3,7 @@ package kripke.models;
 import java.util.Objects;
 
 public class Proposition {
-    private String designation;
+    private final String designation;
 
     public Proposition(String designation) {
         this.designation = designation;

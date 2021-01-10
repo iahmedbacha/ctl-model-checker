@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class FastScanner {
-    private BufferedReader in;
-    private BufferedWriter out;
+    private final BufferedReader in;
+    private final BufferedWriter out;
     private StringTokenizer st;
 
     public FastScanner () {

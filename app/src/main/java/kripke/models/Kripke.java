@@ -4,10 +4,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Kripke {
-    private Map<String, State> states;
-    private Set<State> initialStates;
-    private Map<State, Set<State>> transitions;
-    private Map<State, Set<Proposition>> interpretations;
+    private final Map<String, State> states;
+    private final Set<State> initialStates;
+    private final Map<State, Set<State>> transitions;
+    private final Map<State, Set<Proposition>> interpretations;
 
     public Kripke(Map<String, State> states, Set<State> initialStates, Map<State, Set<State>> transitions, Map<State, Set<Proposition>> interpretations) {
         this.states = states;
