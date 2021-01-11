@@ -49,9 +49,9 @@ public abstract class FormulaVisitor {
     public abstract void visitProposition(Proposition proposition);
 
     /**
-     * Override visit Constant object
+     * Override visit True object
      *
-     * @param constant Constant object
+     * @param aTrue True object
      */
-    public abstract void visitConstant(Constant constant);
+    public abstract void visitTrue(True aTrue);
 }

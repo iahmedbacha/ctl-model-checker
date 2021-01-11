@@ -17,7 +17,7 @@ public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
     @Override
     public Formula visitEU(CTLParser.EUContext ctx) {
         Formula left = visit(ctx.getChild(1));
-        Formula right = visit(ctx.getChild(4));
+        Formula right = visit(ctx.getChild(3));
         return new EU(left, right);
     }
 
@@ -29,7 +29,7 @@ public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
      */
     @Override
     public Formula visitEX(CTLParser.EXContext ctx) {
-        Formula formula = visit(ctx.getChild(2));
+        Formula formula = visit(ctx.getChild(1));
         return new EX(formula);
     }
 
@@ -41,7 +41,7 @@ public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
      */
     @Override
     public Formula visitNegation(CTLParser.NegationContext ctx) {
-        Formula formula = visit(ctx.getChild(2));
+        Formula formula = visit(ctx.getChild(1));
         return new Negation(formula);
     }
 
@@ -54,7 +54,7 @@ public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
     @Override
     public Formula visitAU(CTLParser.AUContext ctx) {
         Formula left = visit(ctx.getChild(1));
-        Formula right = visit(ctx.getChild(4));
+        Formula right = visit(ctx.getChild(3));
         return new AU(left, right);
     }
 
@@ -66,21 +66,20 @@ public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
      */
     @Override
     public Formula visitAnd(CTLParser.AndContext ctx) {
-        Formula left = visit(ctx.getChild(0));
-        Formula right = visit(ctx.getChild(2));
+        Formula left = visit(ctx.getChild(1));
+        Formula right = visit(ctx.getChild(3));
         return new And(left, right);
     }
 
     /**
      * {@inheritDoc}
      *
-     * Override visit Constant node
-     * The concrete implementation returns Constant object
+     * Override visit True node
+     * The concrete implementation returns True object
      */
     @Override
-    public Formula visitConstant(CTLParser.ConstantContext ctx) {
-        boolean constant = ctx.getChild(0).getText().equals("T");
-        return new Constant(constant);
+    public Formula visitTrue(CTLParser.TrueContext ctx) {
+        return new True();
     }
 
     /**

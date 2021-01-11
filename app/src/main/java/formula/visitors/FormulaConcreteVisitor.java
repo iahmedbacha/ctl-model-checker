@@ -248,13 +248,13 @@ public class FormulaConcreteVisitor extends FormulaVisitor {
     /**
      * {@inheritDoc}
      *
-     * The concrete implementation evaluate Constant formula
+     * The concrete implementation evaluate True formula
      */
     @Override
-    public void visitConstant(Constant constant) {
-        if (!isEvaluated(constant)) {
+    public void visitTrue(True aTrue) {
+        if (!isEvaluated(aTrue)) {
             for (State state : kripke.getStates().values()) {
-                setEvaluation(state, constant, constant.isConstant());
+                setEvaluation(state, aTrue, true);
             }
         }
     }
