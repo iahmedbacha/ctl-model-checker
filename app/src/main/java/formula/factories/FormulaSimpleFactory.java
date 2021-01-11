@@ -3,7 +3,7 @@ package formula.factories;
 import antlr.CTLLexer;
 import antlr.CTLParser;
 import formula.models.Formula;
-import formula.visitors.CTLConcreteVisitor;
+import formula.visitors.CTLASTToFormulaConcreteVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -16,30 +16,45 @@ import java.io.IOException;
  */
 public class FormulaSimpleFactory {
     /**
-     * Get formula based on fileName
+     * Get formula based on ctl formula
      *
-     * @param fileName fileName of formula file
+     * @param string ctl formula
      * @return formula object
      * @throws IOException input/output exception
      */
-    public static Formula getFormula (String fileName) throws IOException {
-        CTLParser parser = getParser(fileName);
-        ParseTree antlrAST = parser.formula();
-        CTLConcreteVisitor CTLConcreteVisitor = new CTLConcreteVisitor();
-        return CTLConcreteVisitor.visit(antlrAST);
+    public static Formula getFormula(String string) throws IOException {
+        ParseTree parseTree = getParseTreeFromString(string);
+        CTLASTToFormulaConcreteVisitor CTLASTToFormulaConcreteVisitor = new CTLASTToFormulaConcreteVisitor();
+        return CTLASTToFormulaConcreteVisitor.visit(parseTree);
     }
 
     /**
-     * Get parser based on fileName
+     * Get parser tree based on fileName
      *
      * @param fileName fileName of ctl formula file
-     * @return parser object
+     * @return parseTree object
      * @throws IOException input/output exception
      */
-    private static CTLParser getParser(String fileName) throws IOException {
+    public static ParseTree getParseTreeFromFileName(String fileName) throws IOException {
         CharStream input = CharStreams.fromFileName(fileName);
         CTLLexer lexer = new CTLLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        return new CTLParser(tokens);
+        CTLParser parser = new CTLParser(tokens);
+        return parser.formula();
+    }
+
+    /**
+     * Get parser tree based on ctl formula
+     *
+     * @param string ctl formula
+     * @return parseTree object
+     * @throws IOException input/output exception
+     */
+    public static ParseTree getParseTreeFromString(String string) throws IOException {
+        CharStream input = CharStreams.fromString(string);
+        CTLLexer lexer = new CTLLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        CTLParser parser = new CTLParser(tokens);
+        return parser.formula();
     }
 }

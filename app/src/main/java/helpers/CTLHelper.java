@@ -2,10 +2,12 @@ package helpers;
 
 import formula.factories.FormulaSimpleFactory;
 import formula.models.Formula;
+import formula.visitors.CTLTranspilerConcreteVisitor;
 import formula.visitors.FormulaConcreteVisitor;
 import kripke.factories.KripkeSimpleFactory;
 import kripke.models.Kripke;
 import kripke.models.State;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
 import java.util.Map;
@@ -25,7 +27,8 @@ public class CTLHelper {
     public static void check (String kripkeFileName, String formulaFileName, String outputFileName) throws IOException {
         FastScanner fastScanner = new FastScanner(outputFileName, false);
         Kripke kripke = KripkeSimpleFactory.getKripke(kripkeFileName);
-        Formula formula = FormulaSimpleFactory.getFormula(formulaFileName);
+        String transpiledFormula = transpile(formulaFileName);
+        Formula formula = FormulaSimpleFactory.getFormula(transpiledFormula);
         FormulaConcreteVisitor formulaConcreteVisitor = new FormulaConcreteVisitor(kripke);
         formula.accept(formulaConcreteVisitor);
         Map<State, Map<Formula, Boolean>> evaluations = formulaConcreteVisitor.getEvaluations();
@@ -36,5 +39,11 @@ public class CTLHelper {
         }
         fastScanner.flush();
         fastScanner.close();
+    }
+
+    private static String transpile (String formulaFileName) throws IOException {
+        ParseTree parseTree = FormulaSimpleFactory.getParseTreeFromFileName(formulaFileName);
+        CTLTranspilerConcreteVisitor ctlTranspilerConcreteVisitor = new CTLTranspilerConcreteVisitor();
+        return ctlTranspilerConcreteVisitor.visit(parseTree);
     }
 }

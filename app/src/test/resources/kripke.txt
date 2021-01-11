@@ -18,11 +18,11 @@ S5 S7
 S6 S2
 S7 S1
 8
-S0 2 end1 end2
-S1 2 req1 end2
-S2 2 req2 end1
+S0 4 end1 end2 idle1 idle2
+S1 3 req1 end2 idle2
+S2 3 req2 end1 idle1
 S3 2 req2 req1
-S4 1 cs1
-S5 1 cs2
+S4 2 cs1 idle2
+S5 2 cs2 idle1
 S6 2 cs1 req2
 S7 2 cs2 req1
