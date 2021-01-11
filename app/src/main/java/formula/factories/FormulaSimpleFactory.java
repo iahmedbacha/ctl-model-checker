@@ -20,13 +20,13 @@ public class FormulaSimpleFactory {
      *
      * @param fileName fileName of formula file
      * @return formula object
+     * @throws IOException input/output exception
      */
-    public static Formula getFormula (String fileName) {
+    public static Formula getFormula (String fileName) throws IOException {
         CTLParser parser = getParser(fileName);
         ParseTree antlrAST = parser.formula();
         CTLConcreteVisitor CTLConcreteVisitor = new CTLConcreteVisitor();
-        Formula formula = CTLConcreteVisitor.visit(antlrAST);
-        return formula;
+        return CTLConcreteVisitor.visit(antlrAST);
     }
 
     /**
@@ -34,17 +34,12 @@ public class FormulaSimpleFactory {
      *
      * @param fileName fileName of ctl formula file
      * @return parser object
+     * @throws IOException input/output exception
      */
-    private static CTLParser getParser(String fileName) {
-        CTLParser parser = null;
-        try {
-            CharStream input = CharStreams.fromFileName(fileName);
-            CTLLexer lexer = new CTLLexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            parser = new CTLParser(tokens);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return parser;
+    private static CTLParser getParser(String fileName) throws IOException {
+        CharStream input = CharStreams.fromFileName(fileName);
+        CTLLexer lexer = new CTLLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        return new CTLParser(tokens);
     }
 }
