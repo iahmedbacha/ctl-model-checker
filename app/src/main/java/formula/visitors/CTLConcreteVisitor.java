@@ -5,7 +5,7 @@ import antlr.CTLParser;
 import formula.models.*;
 
 /**
- * CTL concrete visitor: transform an ANTLR AST to formula object
+ * CTLConcreteVisitor transforms an ANTLR AST to formula object
  */
 public class CTLConcreteVisitor extends CTLBaseVisitor<Formula> {
     /**

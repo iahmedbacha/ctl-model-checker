@@ -10,7 +10,18 @@ import kripke.models.State;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * CTLHelper handles input and output operations
+ */
 public class CTLHelper {
+    /**
+     * Check a formula
+     *
+     * @param kripkeFileName kripke file name
+     * @param formulaFileName formula file name
+     * @param outputFileName output file name
+     * @throws IOException input/output exception
+     */
     public static void check (String kripkeFileName, String formulaFileName, String outputFileName) throws IOException {
         FastScanner fastScanner = new FastScanner(outputFileName, false);
         Kripke kripke = KripkeSimpleFactory.getKripke(kripkeFileName);

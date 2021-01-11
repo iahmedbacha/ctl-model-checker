@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Kripke simple factory: create kripke object
+ * KripkeSimpleFactory creates a kripke object
  */
 public class KripkeSimpleFactory {
     /**

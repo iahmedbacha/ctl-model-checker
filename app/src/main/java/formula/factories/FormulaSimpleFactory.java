@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.IOException;
 
 /**
- * Formula simple factory: create formula object
+ * FormulaSimpleFactory creates a formula object
  */
 public class FormulaSimpleFactory {
     /**

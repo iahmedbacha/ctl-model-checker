@@ -3,7 +3,7 @@ package formula.visitors;
 import formula.models.*;
 
 /**
- * Formula visitor defines a complete generic visitor for formula objects
+ * FormulaVisitor defines a complete generic visitor for formula objects
  */
 public abstract class FormulaVisitor {
     /**

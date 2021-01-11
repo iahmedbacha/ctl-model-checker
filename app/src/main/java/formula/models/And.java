@@ -12,6 +12,7 @@ public class And extends Formula {
      * Left formula.
      */
     private final Formula left;
+
     /**
      * Right formula.
      */

@@ -12,6 +12,7 @@ public class EU extends Formula {
      * Left formula.
      */
     private final Formula left;
+
     /**
      * Right formula.
      */

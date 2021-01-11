@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Formula concrete visitor evaluates a formula object
+ * FormulaConcreteVisitor evaluates a formula object
  */
 
 public class FormulaConcreteVisitor extends FormulaVisitor {
