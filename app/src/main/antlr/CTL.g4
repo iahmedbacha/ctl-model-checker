@@ -9,6 +9,6 @@ formula: PROPOSITION # Proposition
        | 'A' formula 'U' '(' formula ')' # AU
        ;
 
-PROPOSITION: [a-z0-9]+;
-CONSTANT: [T|F];
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+PROPOSITION: [a-z0-9]+ ; // match lowercase letters and digits
+CONSTANT: [T|F] ; // match boolean true or false
+WS : [ \t\r\n]+ -> skip ; // toss out spaces, tabs and newlines

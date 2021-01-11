@@ -1,6 +1,6 @@
 package app;
 
-import helpers.CTLChecker;
+import helpers.CTLHelper;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class App {
             String kripkeFileName = args[0];
             String formulaFileName = args[1];
             String outputFileName = args[2];
-            CTLChecker.check(kripkeFileName, formulaFileName, outputFileName);
+            CTLHelper.check(kripkeFileName, formulaFileName, outputFileName);
         }
     }
 }
