@@ -20,9 +20,8 @@ public class FormulaSimpleFactory {
      *
      * @param string ctl formula
      * @return formula object
-     * @throws IOException input/output exception
      */
-    public static Formula getFormula(String string) throws IOException {
+    public static Formula getFormula(String string) {
         ParseTree parseTree = getParseTreeFromString(string);
         CTLASTToFormulaConcreteVisitor CTLASTToFormulaConcreteVisitor = new CTLASTToFormulaConcreteVisitor();
         return CTLASTToFormulaConcreteVisitor.visit(parseTree);
@@ -48,9 +47,8 @@ public class FormulaSimpleFactory {
      *
      * @param string ctl formula
      * @return parseTree object
-     * @throws IOException input/output exception
      */
-    public static ParseTree getParseTreeFromString(String string) throws IOException {
+    public static ParseTree getParseTreeFromString(String string) {
         CharStream input = CharStreams.fromString(string);
         CTLLexer lexer = new CTLLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
