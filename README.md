@@ -14,7 +14,7 @@ A [CTL (Computation Tree Logic)](https://en.wikipedia.org/wiki/Computation_tree_
     - The first token denotes the designation for state j.
     - The second token, z, denotes the number of propositions for state j.
     - The rest of the line contains z space-separated strings describing the respective designations of propositions for state j.
-### CTL formula:
+### CTL formula
 [Check grammar file](./app/src/main/antlr/CTL.g4).
 ## Output format
 A single line that contains space-separated strings describing the respective designations for states that satisfies the CTL formula.
@@ -23,7 +23,7 @@ A single line that contains space-separated strings describing the respective de
 - Gradle: for building the jar file.
 - Java: for executing the jar file.
 ## Steps
-1- Clone this repository.
+1- Clone this repository:
 ```
 git clone git@github.com:iahmedbacha/ctl-model-checker.git
 ```
