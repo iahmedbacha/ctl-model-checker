@@ -101,7 +101,7 @@ public class CTLTranspilerConcreteVisitor extends CTLBaseVisitor<String> {
     public String visitEquivalence(CTLParser.EquivalenceContext ctx) {
         String left = visit(ctx.getChild(1));
         String right = visit(ctx.getChild(3));
-        return "((!(!"+left+")&("+right+"))&(!(!"+right+")&("+left+")))";
+        return "((!("+left+"&(!"+right+")))&(!((!"+left+")&"+right+")))";
     }
 
     /**
