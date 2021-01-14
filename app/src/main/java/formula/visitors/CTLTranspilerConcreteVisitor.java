@@ -75,7 +75,7 @@ public class CTLTranspilerConcreteVisitor extends CTLBaseVisitor<String> {
     public String visitOr(CTLParser.OrContext ctx) {
         String left = visit(ctx.getChild(1));
         String right = visit(ctx.getChild(3));
-        return "(!("+left+"&"+right+"))";
+        return "(!((!"+left+")&(!"+right+")))";
     }
 
     /**
