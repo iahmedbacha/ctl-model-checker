@@ -37,6 +37,7 @@ public class CTLHelper {
                 fastScanner.print(state.getDesignation()+" ");
             }
         }
+        fastScanner.println("");
         fastScanner.flush();
         fastScanner.close();
     }
