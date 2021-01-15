@@ -42,6 +42,12 @@ public class CTLHelper {
         fastScanner.close();
     }
 
+    /**
+     * transpile a formula
+     *
+     * @param formulaFileName formula file name
+     * @throws IOException input/output exception
+     */
     private static String transpile (String formulaFileName) throws IOException {
         ParseTree parseTree = FormulaSimpleFactory.getParseTreeFromFileName(formulaFileName);
         CTLTranspilerConcreteVisitor ctlTranspilerConcreteVisitor = new CTLTranspilerConcreteVisitor();
