@@ -5,11 +5,11 @@ import helpers.CTLHelper;
 import java.io.IOException;
 
 /**
- * App reads user's args inputs and pass them to CTL Checker
+ * App reads user's args inputs and pass them to CTL Helper
  */
 public class App {
     /**
-     * Read user's inputs and call CTL checker
+     * Read user's inputs and call CTL Helper
      *
      * @param args kripke, formula and output file names
      * @throws IOException input/output exception
